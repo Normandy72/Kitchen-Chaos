@@ -320,3 +320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53341635751e47e41accef8fd3e28b01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  platesCounter: {fileID: 672771568802381548}
+  counterTopPoint: {fileID: 7674357847974688817}
+  plateVisualPrefab: {fileID: 3812876574508226176, guid: c0c9afd619b40914a8f625c0535e2284,
+    type: 3}
