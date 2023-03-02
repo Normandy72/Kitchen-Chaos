@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class ProgressBarUI : MonoBehaviour
 {
-    [SerializeField] private Image barImage;
     [SerializeField] private GameObject hasProgressGameObject;
+    [SerializeField] private Image barImage;    
     private IHasProgress hasProgress;
 
     private void Start()
