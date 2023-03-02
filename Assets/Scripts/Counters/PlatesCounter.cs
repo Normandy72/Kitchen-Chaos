@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlatesCounter : BaseCounter
 {
     public event EventHandler OnPlatesSpawned;
+    public event EventHandler OnPlatesRemoved;
 
     [SerializeField] private KitchenObjectSO plateKitchenObjectSO;
 
@@ -29,5 +30,20 @@ public class PlatesCounter : BaseCounter
                 OnPlatesSpawned? .Invoke(this, EventArgs.Empty);
             }
         }  
+    }
+
+    public override void Interact(Player player)
+    {
+        if(!player.HasKitchenObject())
+        {
+            if(platesSpawnedAmount > 0)
+            {
+                platesSpawnedAmount--;
+
+                KitchenObject.SpawnKitchenObject(plateKitchenObjectSO, player);
+
+                OnPlatesRemoved? .Invoke(this, EventArgs.Empty);
+            }
+        }
     }
 }

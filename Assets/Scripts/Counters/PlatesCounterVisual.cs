@@ -17,7 +17,8 @@ public class PlatesCounterVisual : MonoBehaviour
 
     private void Start()
     {
-        platesCounter.OnPlatesSpawned += PlatesCounter_OnPlatesSpawned;    
+        platesCounter.OnPlatesSpawned += PlatesCounter_OnPlatesSpawned;
+        platesCounter.OnPlatesRemoved += PlatesCounter_OnPlatesRemoved;
     }
 
     private void PlatesCounter_OnPlatesSpawned(object sender, System.EventArgs e)
@@ -28,5 +29,12 @@ public class PlatesCounterVisual : MonoBehaviour
         plateVisualTransform.localPosition = new Vector3(0, plateOffsetY * plateVisualGameObjectList.Count, 0);
 
         plateVisualGameObjectList.Add(plateVisualTransform.gameObject);
+    }
+
+    private void PlatesCounter_OnPlatesRemoved(object sender, System.EventArgs e)
+    {
+        GameObject plateGameObject = plateVisualGameObjectList[plateVisualGameObjectList.Count - 1];
+        plateVisualGameObjectList.Remove(plateGameObject);
+        Destroy(plateGameObject);
     }
 }
