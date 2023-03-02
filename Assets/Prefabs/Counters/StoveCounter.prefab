@@ -180,6 +180,8 @@ MonoBehaviour:
   counterTopPoint: {fileID: 2647180980959914950}
   fryingRecipeSOArray:
   - {fileID: 11400000, guid: 1051b3f420b9ae2479d8b273761dce1a, type: 2}
+  burningRecipeSOArray:
+  - {fileID: 11400000, guid: d362d6250c1157748b9fdcfd7d9c6262, type: 2}
 --- !u!4 &2647180980959914950 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8299113909474962476, guid: de8ddb47f11010d469c3f7c5d001bf30,
@@ -221,17 +223,17 @@ PrefabInstance:
     - target: {fileID: 4589716710238282923, guid: 93af8b85a17635f40a5b76ed82a86c18,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.01
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4589716710238282923, guid: 93af8b85a17635f40a5b76ed82a86c18,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.01
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4589716710238282923, guid: 93af8b85a17635f40a5b76ed82a86c18,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.01
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4589716710238282923, guid: 93af8b85a17635f40a5b76ed82a86c18,
         type: 3}

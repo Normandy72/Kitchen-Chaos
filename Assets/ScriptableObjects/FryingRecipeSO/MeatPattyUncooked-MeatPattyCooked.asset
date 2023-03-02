@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 660b53dcee5ce884e890334037bee239, type: 3}
-  m_Name: MeetPattyUncooked-MeetPattyCooked
+  m_Name: MeatPattyUncooked-MeatPattyCooked
   m_EditorClassIdentifier: 
   input: {fileID: 11400000, guid: 48d4c12adc0a9d147a4cd825b546ca56, type: 2}
   output: {fileID: 11400000, guid: 63a061b40426599468d2c5b027294cc5, type: 2}
