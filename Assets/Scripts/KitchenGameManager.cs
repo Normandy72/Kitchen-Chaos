@@ -1,13 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class KitchenGameManager : MonoBehaviour
 {
+    public static KitchenGameManager Instance {get; private set;}
+
+    public event EventHandler OnStateChanged;
+
     private enum State
     {
         WaitingToStart,
-        CutdownToStart,
+        CountdownToStart,
         GamePlaying,
         GameOver,
     }
@@ -19,6 +24,7 @@ public class KitchenGameManager : MonoBehaviour
 
     private void Awake()
     {
+        Instance = this;
         state = State.WaitingToStart;
     }
 
@@ -30,14 +36,16 @@ public class KitchenGameManager : MonoBehaviour
                 waitingToStartTimer -= Time.deltaTime;
                 if(waitingToStartTimer < 0f)
                 {
-                    state = State.CutdownToStart;
+                    state = State.CountdownToStart;
+                    OnStateChanged? .Invoke(this, EventArgs.Empty);
                 }
                 break;
-            case State.CutdownToStart:
+            case State.CountdownToStart:
                 countdownToStartTimer -= Time.deltaTime;
                 if(countdownToStartTimer < 0f)
                 {
                     state = State.GamePlaying;
+                    OnStateChanged? .Invoke(this, EventArgs.Empty);
                 }
                 break;
             case State.GamePlaying:
@@ -45,12 +53,26 @@ public class KitchenGameManager : MonoBehaviour
                 if(gamePlayingTimer < 0f)
                 {
                     state = State.GameOver;
+                    OnStateChanged? .Invoke(this, EventArgs.Empty);
                 }
                 break;
             case State.GameOver:
                 break;
         }
-    } 
+    }
 
+    public bool IsCountdownToStartActive()
+    {
+        return state == State.CountdownToStart;
+    }
 
+    public bool IsGamePlaying()
+    {
+        return state == State.GamePlaying;
+    }
+
+    public float GetCountdownToStartTimer()
+    {
+        return countdownToStartTimer;
+    }
 }
