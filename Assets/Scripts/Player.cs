@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour, IKitchenObjectParent
 {
+    public event EventHandler OnPickedSomething;
     public event EventHandler<OnSelectedCounterChangedEventArgs> OnSelectedCounterChanged;
     public class OnSelectedCounterChangedEventArgs : EventArgs
     {
@@ -148,27 +149,32 @@ public class Player : MonoBehaviour, IKitchenObjectParent
     }
 
     public Transform GetKitchenObjectFollowTransform()
-   {
-      return kitchenObjectHoldPoint;
-   }
+    {
+       return kitchenObjectHoldPoint;
+    }
 
-   public void SetKitchenObject(KitchenObject kitchenObject)
-   {
-      this.kitchenObject = kitchenObject;
-   }
+    public void SetKitchenObject(KitchenObject kitchenObject)
+    {
+       this.kitchenObject = kitchenObject;
 
-   public KitchenObject GetKitchenObject()
-   {
-      return kitchenObject;
-   }
+       if(kitchenObject != null)
+       {
+            OnPickedSomething? .Invoke(this, EventArgs.Empty);
+       }
+    }
 
-   public void ClearKitchenObject()
-   {
-      kitchenObject = null;
-   }
+    public KitchenObject GetKitchenObject()
+    {
+       return kitchenObject;
+    }
 
-   public bool HasKitchenObject()
-   {
-      return kitchenObject != null;
-   }
+    public void ClearKitchenObject()
+    {
+       kitchenObject = null;
+    }
+
+    public bool HasKitchenObject()
+    {
+       return kitchenObject != null;
+    }
 }
