@@ -3372,6 +3372,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf6f14a3f202c7e4dbbf6e961d3a7949, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  container: {fileID: 2011875273}
+  recipeTemplate: {fileID: 2131936040}
 --- !u!4 &1801564014 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6864329987521293257, guid: 25f480917d553fd4c82ec3f61128e074,
