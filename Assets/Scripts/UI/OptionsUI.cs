@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -42,7 +43,7 @@ public class OptionsUI : MonoBehaviour
     [Header("Other")]
     [SerializeField] private Transform pressToRebindKeyTransform;
 
-
+    private Action onCloseButtonAction;
      
     private void Awake()
     {
@@ -60,6 +61,7 @@ public class OptionsUI : MonoBehaviour
 
         closeButton.onClick.AddListener(() => {
             Hide();
+            onCloseButtonAction();
         });
 
         moveUpButton.onClick.AddListener(() => {
@@ -133,9 +135,11 @@ public class OptionsUI : MonoBehaviour
         gamepadPauseText.text = GameInput.Instance.GetBindingText(GameInput.Binding.Gamepad_Pause);
     }
 
-    public void Show()
+    public void Show(Action onCloseButtonAction)
     {
+        this.onCloseButtonAction = onCloseButtonAction;
         gameObject.SetActive(true);
+        soundEffectsbutton.Select();
     }
 
     private void Hide()
