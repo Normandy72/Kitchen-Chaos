@@ -6,12 +6,14 @@ public class SoundManager : MonoBehaviour
 {
     public static SoundManager Instance {get; private set;}
 
+    private const string PLAYER_PROFS_SOUND_EFFECTS_VOLUME = "SoundEffectsVolume";
     [SerializeField] private AudioClipRefsSO audioClipRefsSO;
     private float volume = 1f;
 
     private void Awake()
     {
         Instance = this;
+        volume = PlayerPrefs.GetFloat(PLAYER_PROFS_SOUND_EFFECTS_VOLUME, 1f);
     }
 
     private void Start() {
@@ -83,6 +85,9 @@ public class SoundManager : MonoBehaviour
         {
             volume = 0f;
         }
+
+        PlayerPrefs.SetFloat(PLAYER_PROFS_SOUND_EFFECTS_VOLUME, volume);
+        PlayerPrefs.Save();
     }
 
     public float GetVolume()

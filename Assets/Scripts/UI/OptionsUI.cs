@@ -6,13 +6,18 @@ using UnityEngine.UI;
 
 public class OptionsUI : MonoBehaviour
 {
+    public static OptionsUI Instance {get; private set;}
+
     [SerializeField] private Button soundEffectsbutton;
     [SerializeField] private Button musicButton;
+    [SerializeField] private Button closeButton;
     [SerializeField] private TextMeshProUGUI soundEffectsText;
     [SerializeField] private TextMeshProUGUI musicText;
      
     private void Awake()
     {
+        Instance = this;
+
         soundEffectsbutton.onClick.AddListener(() => {
             SoundManager.Instance.ChangeVolume();
             UpdateVisual();
@@ -22,16 +27,37 @@ public class OptionsUI : MonoBehaviour
             MusicManager.Instance.ChangeVolume();
             UpdateVisual();
         });
+
+        closeButton.onClick.AddListener(() => {
+            Hide();
+        });
     }
 
     private void Start()
     {
-        UpdateVisual();    
+        KitchenGameManager.Instance.OnGamePaused += KitchenGameManager_OnGamePaused;
+        UpdateVisual();
+        Hide();    
+    }
+
+    private void KitchenGameManager_OnGamePaused(object sender, System.EventArgs e)
+    {
+        Hide();
     }
 
     private void UpdateVisual()
     {
         soundEffectsText.text = "Sound Effects: " + Mathf.Round(SoundManager.Instance.GetVolume() * 10f);
         musicText.text = "Music: " + Mathf.Round(MusicManager.Instance.GetVolume() * 10f);
+    }
+
+    public void Show()
+    {
+        gameObject.SetActive(true);
+    }
+
+    private void Hide()
+    {
+        gameObject.SetActive(false);
     }
 }
